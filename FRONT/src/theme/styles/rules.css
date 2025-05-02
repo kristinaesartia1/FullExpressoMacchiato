@@ -1,0 +1,11 @@
+/* --- TYPO --- */
+h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; font-weight: 400; }
+h1 { font-size: 2.6rem; }
+.font-montserrat { font-family: 'Montserrat', sans-serif; }
+.font-lato { font-family: 'Lato', sans-serif; }
+.font-vue { font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; }
+
+/* --- OTHER --- */
+.pointer {
+    cursor: pointer;
+}

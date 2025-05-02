@@ -1,0 +1,10 @@
+@keyframes showItem {
+    0% { opacity: 0; display: none; }
+    1% { display: block; }
+    100% { opacity: 1; }
+}
+@keyframes hideItem {
+    0% { opacity: 1; display: block; }
+    95% { opacity: 0; }
+    100% { display: none; }
+}

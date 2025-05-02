@@ -1,0 +1,85 @@
+// ----------------------------------------------- //
+// --------------------- VARS -------------------- //
+// ----------------------------------------------- //
+.wght-100 { font-weight: 100; }
+.wght-200 { font-weight: 200; }
+.wght-300 { font-weight: 300; }
+.wght-400 { font-weight: 400; }
+.wght-500 { font-weight: 500; }
+.wght-600 { font-weight: 600; }
+.wght-700 { font-weight: 700; }
+.wght-800 { font-weight: 800; }
+.wght-900 { font-weight: 900; }
+
+
+
+
+// ----------------------------------------------- //
+// --------------------- VUE --------------------- //
+// ----------------------------------------------- //
+$fontVue: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+
+
+
+// ----------------------------------------------- //
+// ----------------- MONTSERRAT ------------------ //
+// ----------------------------------------------- //
+$fontMontserrat: 'Montserrat', sans-serif;
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./montserrat/variable.ttf') format('truetype');
+    font-weight: 100 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+// ----------------------------------------------- //
+// -------------------- LATO --------------------- //
+// ----------------------------------------------- //
+$fontLato: 'Lato', sans-serif;
+@font-face {
+    font-family: 'Lato';
+    src: url('./lato/thin.ttf') format('truetype');
+    font-weight: 100; /* Thin */
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Lato';
+    src: url('./lato/light.ttf') format('truetype');
+    font-weight: 300; /* Peso leggero (Light) */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('./lato/regular.ttf') format('truetype');
+    font-weight: 400; /* Peso normale (Regular) */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('./lato/bold.ttf') format('truetype');
+    font-weight: 700; /* Peso grassetto (Bold) */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('./lato/black.ttf') format('truetype');
+    font-weight: 900; /* Black */
+    font-style: normal;
+}
+
+
+
+// ----------------------------------------------- //
+// --------------- MODULE EXPORT ----------------- //
+// ----------------------------------------------- //
+:export {
+    fontVue: $fontVue;
+    fontMontserrat: $fontMontserrat;
+    fontLato: $fontLato
+}
