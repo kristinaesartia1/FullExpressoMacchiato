@@ -5,4 +5,4 @@
 4. [] Reorganize utils functions
 5. [] Clear code
 6. [] Better management for production and dev node modules
-7. [] Resolve font question during build
+8. [x] Link to swagger-ui
