@@ -1,5 +1,6 @@
 import { Client } from "minio";
 import Stream from "stream";
+import { projectConfig } from '../_configs';
 import { fullLogNok, fullLogOk } from "../_super_express/_utils";
 
 
@@ -7,11 +8,11 @@ export class Minio
 {
     public static readonly profilePicBucket = 'profilepics'
     public static readonly client = new Client({
-        endPoint: process.env['MINIO_ENDPOINT'] ?? '12.0.0.7',
-        port: parseInt(process.env['MINIO_PORT'] ?? '9000'),
-        useSSL: process.env['MINIO_SSL'] === 'true',
-        accessKey: process.env['MINIO_ACCESS_KEY'],
-        secretKey: process.env['MINIO_SECRET_KEY'],
+        endPoint: projectConfig.MINIO_ENDPOINT,
+        port: projectConfig.MINIO_PORT,
+        useSSL: projectConfig.MINIO_SSL,
+        accessKey: projectConfig.MINIO_ACCESS_KEY,
+        secretKey: projectConfig.MINIO_SECRET_KEY,
     });
 
     public static putObject = async (bucket:string, writingFileName:string, content:string | Buffer, metadata?:any) =>

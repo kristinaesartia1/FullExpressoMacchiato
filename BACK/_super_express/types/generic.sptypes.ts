@@ -19,6 +19,12 @@ export type ProjectConfigs =
     DB_PORT?:number
     DB_USER?:string
     DB_PASSWORD?:string
+
+    MINIO_ENDPOINT:string,
+    MINIO_PORT?:number,
+    MINIO_SSL?:boolean,
+    MINIO_ACCESS_KEY?:string,
+    MINIO_SECRET_KEY?:string,
 }
 
 

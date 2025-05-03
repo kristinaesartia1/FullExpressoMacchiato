@@ -6,3 +6,4 @@
 5. [] Clear code
 6. [] Better management for production and dev node modules
 8. [x] Link to swagger-ui
+9. [x] Envs under projectConfig
