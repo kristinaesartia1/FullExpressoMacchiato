@@ -3,14 +3,18 @@ import FirmaMini from '@/assets/FirmaMini.svg';
 import TextInput from '@/components/formComponents/TextInput.vue';
 import { useUserStore } from '@/stores/useUserStore';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const userStore = useUserStore();
+const router = useRouter();
+
 const email = ref('');
 const name = ref('');
 const password = ref('');
 const submit = async () =>
 {
-    await userStore.signin(name.value, email.value, password.value);
+    const res = await userStore.signin(name.value, email.value, password.value);
+    if (res) router.push('/');
 }
 </script>
 

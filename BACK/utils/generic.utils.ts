@@ -41,11 +41,18 @@ class Utils extends GenericUtils
 		if (!error) res.status(500).send({ message: err.message });
 		else res.status(error.status ?? 500).send({ message: error.responseMessage ?? err.message });
 	};
+
+	withTimeout<T>(ms: number, promise: Promise<T>): Promise<T> {
+		const timeout = new Promise<never>((_, reject) =>
+			setTimeout(() => reject(new Error('Operation timed out')), ms)
+		);
+		return Promise.race([promise, timeout]);
+	}
 }
 
-const { resOk, resError, errorCatcher, sleep } = new Utils({ locale: "it-IT" });
+const { resOk, resError, errorCatcher, sleep, withTimeout } = new Utils({ locale: "it-IT" });
 
 
 
 // --- Export
-export { errorCatcher, log, resError, resOk, sleep };
+export { errorCatcher, log, resError, resOk, sleep, withTimeout };

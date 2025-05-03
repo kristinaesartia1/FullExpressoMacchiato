@@ -35,7 +35,7 @@ export class Starter
 		// --- DB
 		if (options.db)
 		{
-			await this.initDb(options.projectConfig, options.db.entities, options.db.migrations);
+			await this.initDb(options.projectConfig, options.db.entities, options.db.migrations, options.db.sync);
 			if (options.db.afterDbConnection) await options.db.afterDbConnection();
 		}
 
@@ -94,10 +94,10 @@ export class Starter
 		}
 	};
 
-	private initDb = async (projectConfig:ProjectConfigs, entities:MixedList<Function | string |EntitySchema>, migrations?:string[]) =>
+	private initDb = async (projectConfig:ProjectConfigs, entities:MixedList<Function | string |EntitySchema>, migrations?:string[], sync?:boolean) =>
 	{
 		const connector = new DbConnector(projectConfig)
-		await connector.connect(entities, migrations)
+		await connector.connect(entities, migrations, sync)
 	}
 
 	private initSockets = async (io:Server, sockets:Array<SocketWrapper>) =>

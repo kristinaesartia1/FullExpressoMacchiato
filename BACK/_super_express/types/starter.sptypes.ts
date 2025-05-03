@@ -16,6 +16,7 @@ export type StarterOptions = {
     db?:{
         entities:MixedList<Function | string |EntitySchema>,
         migrations?:string[],
+        sync?:boolean,
         afterDbConnection?:() => Promise<void>
     },
 }

@@ -68,11 +68,13 @@ export const useUserStore = defineStore('preferences', {
             {
                 toast.error(response.error);
                 Cazzios.isAuth.value = false;
+                return false;
             }
             else
             {
                 Cazzios.isAuth.value = true;
                 this.setPreferences(response.response);
+                return true;
             }
         },
         logout()
