@@ -1,4 +1,4 @@
-1. [] Migrations
+1. [x] Migrations
 2. [] Sockets
 3. [] Test the correct function of dbRouting getParams
 3. [] An option ["*"] for the "secure" option in dbRouting.
