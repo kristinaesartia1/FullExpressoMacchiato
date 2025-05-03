@@ -68,29 +68,3 @@ export class DbConnector
         }
     }
 }
-
-
-class ModelsMetadata
-{
-    static MetadataKey = Symbol("customMetadata");
-
-    /**
-     * @Description
-     * Decorator to use inside model declarations, used inside db router for dynamically create swagger props
-     */
-    SwaggerMetadata(metadata: SwaggerMetadataInterface) {
-        return function (target: any, propertyKey: string) {
-            Reflect.defineMetadata(ModelsMetadata.MetadataKey, metadata, target, propertyKey);
-        };
-    }
-
-    /**
-     * @Description
-     * Retrieves the decorator data.
-     */
-    getCustomMetadata(target: any, propertyKey: string):SwaggerMetadataInterface {
-        return Reflect.getMetadata(ModelsMetadata.MetadataKey, target, propertyKey);
-    }
-}
-const { SwaggerMetadata, getCustomMetadata } = new ModelsMetadata();
-export { getCustomMetadata, SwaggerMetadata };

@@ -4,8 +4,8 @@ import { AfterInsert, BaseEntity, BeforeInsert, Column, Entity, OneToMany, Prima
 import { Minio } from "../../utils/minio.utils";
 import { Note } from "./notes.model";
 
-const avatart = new AvatarGenerator({ backColor: [0,0,0], gridSize:13, fixedSize:300, symmetry: 'vertical' })
-@Entity({ schema:"identity" })
+const avatart = new AvatarGenerator({ backColor: [0,0,0], gridSize:19, fixedSize:300, symmetry: 'vertical' })
+@Entity()
 export class User extends BaseEntity
 {
     @PrimaryGeneratedColumn("uuid")

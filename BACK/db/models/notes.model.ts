@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./user.model";
 
-@Entity({ schema: "identity" })
+@Entity()
 export class Note extends BaseEntity {
     @PrimaryGeneratedColumn("uuid")
     id!: string;

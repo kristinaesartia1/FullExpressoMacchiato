@@ -1,6 +1,6 @@
 import { BaseEntity, ColumnType, EntityMetadataNotFoundError, Equal, FindOptionsOrder, FindOptionsWhere } from "typeorm";
 import { errorCatcher, log } from "./_utils";
-import { DbConnector, getCustomMetadata } from "./DbConnector";
+import { DbConnector } from "./DbConnector";
 import { Swagger } from "./Swagger";
 import { Token } from "./Token";
 import { DynamicDbRouterOptions } from "./types/db.sptypes";
@@ -186,14 +186,14 @@ export class DynamicDbRouter
         try
         {
             let schemaProperties:{ [key:string]: Schema } = {}
-            if (options.bodyParameters && options.bodyParameters[options.tag])
+            if (options.bodyParameters && options.bodyParameters)
             {
-                const defaultOverridingSchema = options.bodyParameters[options.tag];
+                const defaultOverridingSchema = options.bodyParameters;
                 for (const param in defaultOverridingSchema.properties)
                 {
                     const paramValue = defaultOverridingSchema.properties[param]
                     schemaProperties[param] = {
-                        type: this.getTypefromReflection((paramValue.type ?? 'string').toString() as Extract<string, ParameterType>) as ParameterType,
+                        type: paramValue.type,
                         required: paramValue.required
                     }
                 }
@@ -204,26 +204,14 @@ export class DynamicDbRouter
                 for (const col of metadata.columns)
                 {
                     if (col.propertyName === options.primaryKey) continue;
-
-                    const customMetada = getCustomMetadata(options.entity.prototype, col.propertyName);
-                    if (customMetada)
-                    {
-                        if (customMetada.hide) continue;
-                        schemaProperties[col.propertyName] = {
-                            type: this.getTypefromReflection(col.type.toString() as Extract<string, ParameterType>) as ParameterType,
-                            required: customMetada.required
-                        }
-                    }
-                    else
-                    {
-                        schemaProperties[col.propertyName] = {
-                            type: this.getTypefromReflection(col.type.toString() as Extract<string, ParameterType>) as ParameterType,
-                        }
+                    schemaProperties[col.propertyName] = {
+                        type: this.getTypefromReflection(col.type.toString() as Extract<string, ParameterType>) as ParameterType,
                     }
                 }
             }
 
-            if (!avoidList.includes('POST') || !avoidList.includes('PUT') || !avoidList.includes('DELETE')) {
+            if (!avoidList.includes('POST') || !avoidList.includes('PUT'))
+            {
                 Swagger.addSchema(options.tag, schemaProperties)
             }
         }
@@ -252,39 +240,14 @@ export class DynamicDbRouter
         }
         if (!avoidList.includes('POST'))
         {
-            if (options.bodyParameters) Swagger.addApiPath(options.tag, options.basePath, {
-                [`/`]: {
-                    post: {
-                        responses: {},
-                        requestBody: {
-                            required:true,
-                            schemaName:options.tag,
-                            schema: options.bodyParameters
-                        }
-                    },
-                },
-            })
-            else Swagger.addSingleApiPath(options.tag, options.basePath, '/', 'POST', undefined, { schema: options.tag })
+            Swagger.addSingleApiPath(options.tag, options.basePath, '/', 'POST', undefined, { schema: options.tag })
         }
         if (!avoidList.includes('PUT'))
         {
-            if (options.bodyParameters) Swagger.addApiPath(options.tag, options.basePath, {
-                [`/{${options.primaryKey}}`]: {
-                    put: {
-                        responses: {},
-                        parameters:[{ name: options.primaryKey!, in: "path", required: true }],
-                        requestBody: {
-                            required:true,
-                            schemaName:options.tag,
-                            schema: options.bodyParameters
-                        }
-                    },
-                },
-            })
-            else Swagger.addSingleApiPath(
+            Swagger.addSingleApiPath(
                 options.tag, options.basePath, `/{${options.primaryKey}}`, 'PUT',
                 [{ name: options.primaryKey!, in: "path", required: true }], { schema: options.tag }
-            );
+            )
         }
         if (!avoidList.includes('DELETE'))
         {
@@ -293,6 +256,9 @@ export class DynamicDbRouter
             ])
         }
     }
+
+
+
 
     private static setSecureParams = (method:Methods | "LIST", payload: null | TokenPayload, secure?:SecureTokenConfig):Record<string, any> =>
     {

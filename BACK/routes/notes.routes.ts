@@ -9,7 +9,7 @@ export const noteRoutes = new RouterWrapper({
     dbRouting:
     {
         entity: Note,
-        secure: { user_id: { tokenKey: 'id', methods: ['LIST', 'GET', 'POST', 'PUT', 'DELETE'] } },
-        bodyParameters: { note: Swagger.createSchema({ content: { type: 'string' } }) },
+        secure: { user_id: { tokenKey: 'id', methods: "*" } },
+        bodyParameters: Swagger.createSchema({ content: 'string' }),
     }
 });

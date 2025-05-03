@@ -12,7 +12,7 @@ export interface RouterWrapperInterface<T extends typeof BaseEntity = typeof Bas
         entity:T,
         primaryKey?:string,
         getParameters?:Array<Parameter>
-        bodyParameters?:{ [key:string]: SchemaV3 },
+        bodyParameters?:SchemaV3,
         avoid?:Array<Methods | 'LIST'>,
         secure?:SecureTokenConfig
     }
