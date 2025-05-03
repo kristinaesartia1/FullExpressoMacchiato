@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import Container from '@/components/Container.vue';
 import EmptyMessage from '@/components/EmptyMessage.vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
+const isDev = ref(import.meta.env.DEV)
 const router = useRouter();
 
 const navigateToSwagger = () =>
@@ -17,7 +19,7 @@ const navigateToSwagger = () =>
         <EmptyMessage class="pointer mb-2" theme-color="surface" borders @click="router.push('personalPage')">
             Navigate to your personal page to set your preferences
         </EmptyMessage>
-        <EmptyMessage v-if="import.meta.env.DEV" class="pointer" theme-color="info" borders @click="navigateToSwagger()">
+        <EmptyMessage v-if="isDev" class="pointer" theme-color="info" borders @click="navigateToSwagger()">
             SWAGGER-UI
         </EmptyMessage>
     </Container>
