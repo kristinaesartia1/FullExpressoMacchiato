@@ -1,7 +1,7 @@
 1. [x] Migrations
 2. [] Sockets
 3. [] Test the correct function of dbRouting getParams
-3. [] An option ["*"] for the "secure" option in dbRouting.
+3. [x] An option ["*"] for the "secure" option in dbRouting.
 4. [] Reorganize utils functions
 5. [] Clear code
 6. [] Better management for production and dev node modules

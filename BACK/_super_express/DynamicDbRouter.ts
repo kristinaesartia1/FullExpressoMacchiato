@@ -303,7 +303,7 @@ export class DynamicDbRouter
             for (const secureParam in secure)
             {
                 const secureParamVal = secure[secureParam]
-                if (secureParamVal.methods.includes(method) && payload[secureParamVal.tokenKey])
+                if (secureParamVal.methods === "*" || secureParamVal.methods.includes(method) && payload[secureParamVal.tokenKey])
                 {
                     if ((["LIST", "GET", "DELETE"]).includes(method)) searchQuery[secureParam] = Equal(payload[secureParamVal.tokenKey]) as any;
                     else searchQuery[secureParam] = payload[secureParamVal.tokenKey];
