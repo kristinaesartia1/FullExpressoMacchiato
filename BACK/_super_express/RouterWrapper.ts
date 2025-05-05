@@ -42,11 +42,11 @@ export class RouterWrapper
             }
 
             // The avoid array is passed to this method that manages everything.
-            const { entity, bodyParameters, getParameters, primaryKey } = this.data.dbRouting;
+            const { entity, bodyParameters, getParameters, primaryKey, secure, returningProps } = this.data.dbRouting;
             DynamicDbRouter.createDbRouter({
                 entity, bodyParameters, getParameters, primaryKey,
                 router:newRouter, basePath:this.data.basePath, tag:this.data.tag, avoid:avoidOptionsForDefinedApis,
-                secure: this.data.dbRouting?.secure
+                secure: secure, returningProps: returningProps
             })
         }
 

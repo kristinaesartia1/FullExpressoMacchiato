@@ -1,4 +1,4 @@
-import { BaseEntity, ColumnType, EntityMetadataNotFoundError, Equal, FindOptionsOrder, FindOptionsWhere } from "typeorm";
+import { BaseEntity, ColumnType, EntityMetadataNotFoundError, Equal, FindOptionsOrder, FindOptionsSelect, FindOptionsWhere } from "typeorm";
 import { errorCatcher, log } from "./_utils";
 import { DbConnector } from "./DbConnector";
 import { Swagger } from "./Swagger";
@@ -77,7 +77,8 @@ export class DynamicDbRouter
                     where: { ...searchQuery, ...secureSearchQuery } as FindOptionsWhere<BaseEntity>,
                     take: pageSize ?? 0,
                     skip: (page ?? 0) * (pageSize ?? 0),
-                    order: { [orderBy ?? options.primaryKey!]: order ?? 'ASC' } as FindOptionsOrder<BaseEntity>
+                    order: { [orderBy ?? options.primaryKey!]: order ?? 'ASC' } as FindOptionsOrder<BaseEntity>,
+                    select: options.returningProps as FindOptionsSelect<BaseEntity>
                 });
 
 
@@ -98,7 +99,10 @@ export class DynamicDbRouter
                 const secureSearchQuery = this.setSecureParams("GET", payload, options.secure) as SearchQuery;
 
                 const id = req.params.id;
-                const singleEntity = await options.entity.findOneBy({ [options.primaryKey!]: Equal(id), ...secureSearchQuery } as FindOptionsWhere<BaseEntity>);
+                const singleEntity = await options.entity.findOne({
+                    where: { [options.primaryKey!]: Equal(id), ...secureSearchQuery } as FindOptionsWhere<BaseEntity>,
+                    select: options.returningProps as FindOptionsSelect<BaseEntity>
+                });
                 res.send(singleEntity);
             }
             catch(err)
@@ -118,7 +122,13 @@ export class DynamicDbRouter
                 const body:T = req.body;
                 const newEntity = await options.entity.create({ ...body, ...secureSearchQuery }).save();
 
-                res.send(newEntity);
+                const result = {} as Record<string, any>
+                for (const key in newEntity)
+                {
+                    if (options.returningProps?.includes(key)) result[key] = (newEntity as Record<string, any>)[key];
+                }
+
+                res.send(result);
             }
             catch(err)
             {
@@ -145,8 +155,15 @@ export class DynamicDbRouter
                     if (key !== options.primaryKey && key in singleEntity) singleEntity[key] = body[key];
                 }
 
-                options.entity.save(singleEntity);
-                res.send(singleEntity);
+                await options.entity.save(singleEntity);
+
+                const result = {} as T
+                for (const key in singleEntity)
+                {
+                    if (options.returningProps?.includes(key)) result[key as keyof T] = singleEntity[key];
+                }
+
+                res.send(result);
             }
             catch(err)
             {
@@ -166,7 +183,13 @@ export class DynamicDbRouter
                 const singleEntity = await options.entity.findOneBy({ [options.primaryKey!]: Equal(id), ...secureSearchQuery });
                 if (singleEntity === null) throw new Error("Entity not found");
 
-                options.entity.remove(singleEntity);
+                await options.entity.remove(singleEntity);
+                const result = {} as Record<string, any>
+                for (const key in singleEntity)
+                {
+                    if (options.returningProps?.includes(key)) result[key] = (singleEntity as Record<string, any>)[key];
+                }
+
                 res.send(singleEntity);
             }
             catch(err)

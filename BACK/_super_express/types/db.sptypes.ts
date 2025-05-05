@@ -13,5 +13,6 @@ export type DynamicDbRouterOptions<T extends typeof BaseEntity> = {
     getParameters?:Array<Parameter>
     bodyParameters?:SchemaV3
     avoid?:Array<Methods | 'LIST'>,
-    secure?:SecureTokenConfig
+    secure?:SecureTokenConfig,
+    returningProps?:string[]
 }

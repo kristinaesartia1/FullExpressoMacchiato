@@ -14,7 +14,8 @@ export interface RouterWrapperInterface<T extends typeof BaseEntity = typeof Bas
         getParameters?:Array<Parameter>
         bodyParameters?:SchemaV3,
         avoid?:Array<Methods | 'LIST'>,
-        secure?:SecureTokenConfig
+        secure?:SecureTokenConfig,
+        returningProps?:string[]
     }
     apis?: Record<string, {
         'GET'?:MethodPathHandling
