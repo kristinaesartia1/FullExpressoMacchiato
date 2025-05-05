@@ -1,11 +1,5 @@
-1. [x] Migrations
-2. [] Sockets
-3. [x] Test the correct function of dbRouting getParams
-3. [x] An option ["*"] for the "secure" option in dbRouting.
-4. [] Reorganize utils functions
-5. [x] Clear code
-6. [] Better management for production and dev node modules
-7. [x] Resolve font question during build
-8. [x] Link to swagger-ui
-9. [x] Envs under projectConfig
-10. [x] better dev experience on db routing
+1. [] Sockets
+2. [] Reorganize utils functions
+3. [] Better management for production and dev node modules
+4. [] (DbRouting) Transfer the swagger schema params in the entity creation too (no other fields than specified)
+4. [] "Like" options in get parameters
