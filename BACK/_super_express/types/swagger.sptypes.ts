@@ -107,7 +107,7 @@ export type FormDataParameter =
         collectionFormat?: ParameterCollectionFormat | undefined;
     };
 
-export type Parameter = BodyParameter | FormDataParameter | QueryParameter | PathParameter | HeaderParameter;
+export type Parameter = { like?:boolean} & (BodyParameter | FormDataParameter | QueryParameter | PathParameter | HeaderParameter);
 
 // ------------------------------- Path --------------------------------------
 export interface Path {

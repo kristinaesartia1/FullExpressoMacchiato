@@ -66,7 +66,11 @@ export class DynamicDbRouter
                 {
                     const val = req.query[param.name] ?? undefined;
                     if (param.required && !val) throw new Error(`Params Error: ${param.name} required`);
-                    if (val !== undefined) searchQuery[param.name] = Equal(val) as any;
+                    if (val !== undefined)
+                    {
+                        if (param.like) searchQuery[param.name] = Like(`%${val}%`) as any;
+                        else searchQuery[param.name] = Equal(val) as any;
+                    }
                 }
                 // --- 3.  Secure Params inside the jwt
                 const secureSearchQuery = this.setSecureParams("LIST", payload, options.secure) as SearchQuery;
