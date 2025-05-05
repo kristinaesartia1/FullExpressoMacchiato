@@ -17,7 +17,7 @@ const submit = async () =>
 </script>
 
 <template>
-    <v-sheet color="background" elevation="0" rounded class="pa-5" style="width: 85%; min-width: 250px; max-width: 1400px;">
+    <v-sheet color="background" elevation="0" rounded class="pa-5" style="width: 85%; min-width: 250px; max-width: 900px;">
         <div class="d-flex justify-center" style="height: 100px;">
             <img :src="FirmaMini" >
         </div>

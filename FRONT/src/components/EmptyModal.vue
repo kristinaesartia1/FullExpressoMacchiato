@@ -5,13 +5,16 @@ import Container from './Container.vue';
 const emit = defineEmits<{ confirm:[boolean] }>();
 const props = withDefaults(defineProps<{
     maxWidth?:string,
+    minWidth?:string,
     width?:string,
     okButton?:string,
     okButtonColor?:string
     hideOkBtn?:boolean,
-    autoclose?:boolean
+    autoclose?:boolean,
+    additionalStyle?:string
 }>(), {
     maxWidth: "50vw",
+    minWidth:"250px",
     okButton: 'Save',
     width: 'auto',
     okButtonColor:'success',
@@ -52,9 +55,10 @@ defineExpose({ openDialog, closeDialog });
 </script>
 
 <template>
-    <v-dialog v-model="dialog" :width="props.width">
+    <v-dialog v-model="dialog" :max-width="props.maxWidth" :style="props.additionalStyle">
       <v-card
-        :max-width="props.maxWidth"
+        :min-width="props.minWidth"
+        :width="props.width"
         :prepend-icon="dialogIcon"
         :title="dialogName"
       >
@@ -83,5 +87,4 @@ defineExpose({ openDialog, closeDialog });
 </template>
 
 <style lang="scss" scoped>
-
 </style>

@@ -2,13 +2,12 @@
 import { UI } from "@/_CONFIGS";
 import { VuetifyVariants } from "@/types/theme.types";
 import { SelectOption } from "utils-stuff";
-import { ref, Ref } from "vue";
 
 
 // --- PARAMETERS
-const emits = defineEmits(["change", "input"]);
+const emits = defineEmits(["change", "update:modelValue"]);
 const props = withDefaults(defineProps<{
-  value: OptionKey
+  modelValue: OptionKey
   allOptions: SelectOption<OptionKey, OptionValue>[]
   label?: string
   disabled?: boolean
@@ -26,14 +25,12 @@ const props = withDefaults(defineProps<{
 	variant: UI.InputVariant
 });
 
-// --- DATA
-const currentValue: Ref = ref(props.value);
 </script>
 
 <template>
 	<v-select
 		:id="props.inputId"
-		:model-value="currentValue"
+		:model-value="modelValue"
 		:class="`body-input-multiselect ${inputClass}`"
 		:label="props.label"
 		:density="props.density"
@@ -43,13 +40,7 @@ const currentValue: Ref = ref(props.value);
 		:hide-details="props.hideDetails"
 		:disabled="props.disabled"
 		:variant="variant"
-		@update:model-value="
-			(x: OptionKey) => {
-				emits('change', x)
-				currentValue = x
-			}
-		"
-		@input="(x: unknown) => emits('input', x)"
+		@update:model-value="(x: unknown) => { emits('change', x); emits('update:modelValue', x); }"
 	/>
 </template>
 
