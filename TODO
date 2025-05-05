@@ -1,5 +1,5 @@
 1. [] Sockets
 2. [] Reorganize utils functions
 3. [] Better management for production and dev node modules
-4. [] (DbRouting) Transfer the swagger schema params in the entity creation too (no other fields than specified)
+4. [x] (DbRouting) Transfer the swagger schema params in the entity creation too (no other fields than specified)
 4. [x] "Like" options in get parameters

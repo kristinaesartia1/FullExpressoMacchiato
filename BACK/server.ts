@@ -6,6 +6,7 @@ import { Starter } from "./_super_express/Starter";
 import { fileRouter } from "./routes/files.routes";
 import { noteRoutes } from "./routes/notes.routes";
 import { salesRouter } from "./routes/sales.routes";
+import { testRoutes } from "./routes/test.routes";
 import { userRouter } from "./routes/user.routes";
 
 const isCompiled = __filename.endsWith('.js');
@@ -24,6 +25,7 @@ new Starter({
 		userRouter,
 		salesRouter,
 		fileRouter,
-		noteRoutes
+		noteRoutes,
+		testRoutes
 	],
 });
