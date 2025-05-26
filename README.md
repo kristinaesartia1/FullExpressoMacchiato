@@ -1,4 +1,4 @@
-# Super Express Template
+# Full Expresso Macchiato
 > Still building this template, there are many things to take care of but at the moment you can already start building some simple apps.
 
 ![Code](./_github_pics/code_notes.png)
@@ -9,6 +9,9 @@
 This template is intented to use by me for fasten things up but feel free to use it and customize it however you want.
 **It uses a little express wrapper that "near-to-automatically" serves swagger-ui and creates some dynamic endpoints for your api and db**.
 You can check the dock in the `./back` folder README.
+
+## ExpressoMacchiato
+Check out [Expresso Macchiato](https://github.com/alessioVelluso/ExpressoMacchiato) wrapper to see how swagger and dynamic routes are generated
 
 ### Use
 Both projects can be tested by going in their root folder (same level as their package.json) and using the command `npm run dev`.
