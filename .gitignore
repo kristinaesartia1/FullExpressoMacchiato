@@ -4,6 +4,7 @@ CHANGELOG.md
 .gitmoji-changelogrc
 
 # Logs
+# Test
 **/logs
 **/*.log
 **/npm-debug.log*
