@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
-import { Swagger } from "../_super_express/Swagger";
+import { Swagger } from "expresso-macchiato";
 
-Swagger.addApiPath('dev', '/api/dev', {
+Swagger._addApiPath('dev', '/api/dev', {
 	"/": { get: Swagger.getBasicGet() },
 	'/{id}': { put: Swagger.getBasicPost('dev', true, [Swagger.getIdParam()], { test: { type: 'string' } }) }
 });

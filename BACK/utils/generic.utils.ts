@@ -1,7 +1,7 @@
 import { Response } from "express";
+import { Methods } from "expresso-macchiato";
 import { Logger, LoggerConstructor } from "utils-logger-av";
 import { GenericUtils, GenericUtilsConstructor } from "utils-stuff";
-import { Methods } from "../_super_express/types/generic.sptypes";
 import { ErrorsMapping } from "../types/generic.types";
 
 // --- Logger

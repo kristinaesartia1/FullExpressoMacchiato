@@ -1,12 +1,10 @@
 import { compareSync, hashSync } from "bcrypt";
+import { apiNok, apiOk, RouterWrapper, Swagger } from "expresso-macchiato";
 import multer from "multer";
 import { Equal } from "typeorm";
-import { apiNok, apiOk } from "../_super_express/_utils";
-import { RouterWrapper } from "../_super_express/RouterWrapper";
-import { Swagger } from "../_super_express/Swagger";
-import { Token } from "../_super_express/Token";
 import { User } from "../db/models/user.model";
 import { Minio } from "../utils/minio.utils";
+import { tokenInstance } from "../utils/token.utils";
 
 const upload = multer({ storage: multer.memoryStorage() })
 
@@ -38,7 +36,7 @@ export const userRouter = new RouterWrapper({
                     const passwordMatch = compareSync(password, user.password);
                     if (!passwordMatch) return apiNok("Wrong Credentials", 401);
 
-                    const token = await Token.generateJWE({ id: user.id });
+                    const token = await tokenInstance.generateJWE({ id: user.id });
                     const image = await Minio.getProfilePic(user.id);
                     return apiOk({
                         token,
@@ -59,7 +57,7 @@ export const userRouter = new RouterWrapper({
 
                     const user = await User.create({ name, email, password }).save();
 
-                    const token = await Token.generateJWE({ id: user.id });
+                    const token = await tokenInstance.generateJWE({ id: user.id });
                     const image = await Minio.getProfilePic(user.id);
                     return apiOk({
                         token,
@@ -76,7 +74,7 @@ export const userRouter = new RouterWrapper({
                 middlewares: [upload.single('image')],
                 handler: async (req) =>
                 {
-                    const payload = await Token.authorize(req);
+                    const payload = await tokenInstance.authorize(req);
                     const { id } = payload;
                     const { name } = req.body
 
@@ -100,7 +98,7 @@ export const userRouter = new RouterWrapper({
                 swaggerBody: { schema: 'change-pass' },
                 handler: async (req) =>
                 {
-                    const payload = await Token.authorize(req);
+                    const payload = await tokenInstance.authorize(req);
                     const { id } = payload;
                     const { currentPassword, newPassword } = req.body
 

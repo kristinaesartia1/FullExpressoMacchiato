@@ -1,7 +1,7 @@
+import { fullLogNok, fullLogOk } from "expresso-macchiato";
 import { Client } from "minio";
 import Stream from "stream";
 import { projectConfig } from '../_configs';
-import { fullLogNok, fullLogOk } from "../_super_express/_utils";
 
 
 export class Minio

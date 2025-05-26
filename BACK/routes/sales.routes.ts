@@ -1,4 +1,4 @@
-import { RouterWrapper } from "../_super_express/RouterWrapper";
+import { RouterWrapper } from "expresso-macchiato";
 import { SalesData } from "../db/models/salesData.model";
 
 export const salesRouter = new RouterWrapper({

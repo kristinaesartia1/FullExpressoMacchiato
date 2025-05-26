@@ -1,5 +1,4 @@
-import { RouterWrapper } from "../_super_express/RouterWrapper";
-import { Swagger } from "../_super_express/Swagger";
+import { RouterWrapper, Swagger } from "expresso-macchiato";
 import { Note } from "../db/models/notes.model";
 
 

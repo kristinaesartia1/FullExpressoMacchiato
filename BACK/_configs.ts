@@ -1,9 +1,10 @@
 import { config } from 'dotenv';
-import { ProjectConfigs } from './_super_express/types/generic.sptypes';
+import { ProjectConfigs } from 'expresso-macchiato';
+import { MyProjectConfig } from './types/generic.types';
 
 config();
 
-export const projectConfig: ProjectConfigs = {
+export const projectConfig: ProjectConfigs & MyProjectConfig = {
     SERVER_PORT: parseInt(process.env.SERVER_PORT ?? '3000'),
 
     DB_DIALECT: process.env.DB_DIALECT,
