@@ -9,24 +9,33 @@ I prefer to leave it as a template and not a package as it must be implemented b
 For the database, there is a default sqlite3 in the packages too, if you need postgres or any other engine, check out the [typeorm packages](https://typeorm.io/#installation) required for your db.
 
 ```python
-# --- DB
-DB_DIALECT=postgres
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=postgres
-DB_PASSWORD=postgres
-DB_NAME=postgres
+SERVER_PORT=3000 # required
+API_URL="http://127.0.0.1:3000/api" # not required
+ERROR_FILE_PATH="logs/errors.log" # not required
+TOKEN_KEY="your-ultra-secret-key" # required if you want to use tokens
 
-# --- MINIO (app is using it by default, remove it if not needed)
+# ---
+# Db parameters are required depending on the DB_DIALECT (check typeorm requirements)
+# Use the next lines how you want, the template comes from a configuration for a sqlite3 db.
+# ---
+# DB_DIALECT="postgres"
+# DB_HOST="127.0.0.1"
+# DB_PORT=5432
+# DB_USER="username"
+# DB_PASSWORD="mystrongbdpassword"
+# DB_NAME="expresso"
+
+DB_DIALECT="sqlite"
+DB_NAME="db/expresso.db"
+
+
+
+# Not for the expresso-macchiato package but inside the template because i often use it.
 MINIO_ENDPOINT="127.0.0.1"
 MINIO_PORT=9000
 MINIO_SSL=false
-MINIO_ACCESS_KEY="accesskey"
-MINIO_SECRET_KEY="secretkey"
-
-
-API_URL="https://your.prod.path.com"  # (or http://10.2.3.4:3000 ecc...) Used for multiple nodes or dev instances, leave undefined if it is the same ip that serves client
-SERVER_PORT=3000
+MINIO_ACCESS_KEY="in minio container you can use your root username but in prod use amazon s3 keys"
+MINIO_SECRET_KEY="in minio container you can use your root password but in prod use amazon s3 keys"
 ```
 
 
