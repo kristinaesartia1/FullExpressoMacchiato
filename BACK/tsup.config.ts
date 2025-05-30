@@ -23,11 +23,12 @@ const addJsExtensionPlugin: Plugin = {
 export default defineConfig({
   format: ['cjs'],
   entry: [
-    './server.ts',
+    './main.ts',
     './_configs.ts',
-    './_super_express/*.ts',
     './db/**/*.ts',
     './routes/**/*.ts',
+    './sockets/**/*.ts',
+    './services/**/*.ts',
     './utils/**/*.ts',
   ],
   dts: false,

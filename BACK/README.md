@@ -1,88 +1,54 @@
-# Super Express
-Little wrapper for express that can be used for small/medium monolitics apps.
+# Create Expresso Macchiato
 
-You easily call the initializer with your db models, and build some custom express routers to dynamically create all the endpoints and the swagger-ui.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ExpressoMacchiato/ExpressoMacchiato/refs/heads/master/_github_assets/expresso-macchiato.svg" style="height: 220px;" />
+</p>
 
-I prefer to leave it as a template and not a package as it must be implemented based on your project needings for now.
+<p align="center">
+  <!-- ⭐ GitHub Stars -->
+  <a href="https://github.com/ExpressoMacchiato/ExpressoMacchiato/stargazers">
+    <img src="https://img.shields.io/github/stars/ExpressoMacchiato/ExpressoMacchiato?style=social" alt="GitHub stars" />
+  </a>
+  <!-- 🐛 Issues aperti -->
+  <a href="https://github.com/ExpressoMacchiato/ExpressoMacchiato/issues">
+    <img src="https://img.shields.io/github/issues/ExpressoMacchiato/ExpressoMacchiato" alt="GitHub issues" />
+  </a>
+  <!-- 🔃 Pull Requests -->
+  <a href="https://github.com/ExpressoMacchiato/ExpressoMacchiato/pulls">
+    <img src="https://img.shields.io/github/issues-pr/ExpressoMacchiato/ExpressoMacchiato" alt="GitHub pull requests" />
+  </a>
+  <!-- 📦 Ultima Release -->
+  <a href="https://github.com/ExpressoMacchiato/ExpressoMacchiato/releases">
+    <img src="https://img.shields.io/github/v/release/ExpressoMacchiato/ExpressoMacchiato" alt="GitHub release" />
+  </a>
+</p>
 
-### Env file
-For the database, there is a default sqlite3 in the packages too, if you need postgres or any other engine, check out the [typeorm packages](https://typeorm.io/#installation) required for your db.
-
-```python
-SERVER_PORT=3000 # required
-API_URL="http://127.0.0.1:3000/api" # not required
-ERROR_FILE_PATH="logs/errors.log" # not required
-TOKEN_KEY="your-ultra-secret-key" # required if you want to use tokens
-
-# ---
-# Db parameters are required depending on the DB_DIALECT (check typeorm requirements)
-# Use the next lines how you want, the template comes from a configuration for a sqlite3 db.
-# ---
-# DB_DIALECT="postgres"
-# DB_HOST="127.0.0.1"
-# DB_PORT=5432
-# DB_USER="username"
-# DB_PASSWORD="mystrongbdpassword"
-# DB_NAME="expresso"
-
-DB_DIALECT="sqlite"
-DB_NAME="db/expresso.db"
+<p align="center">
+  <img src="https://img.shields.io/badge/typescript-5.3.3-blue" alt="Typescript" />
+  <img src="https://img.shields.io/badge/express-4.18.2-teal" alt="Express" />
+  <img src="https://img.shields.io/badge/typeorm-0.3.21-teal" alt="TypeORM" />
+</p>
 
 
+<br>
+<p align="center" style="font-size: 1.2rem;">
+  💡 <strong>Check the full documentation</strong><br>
+  👉 Visit <a href="https://alessios-books.gitbook.io/expresso-macchiato">expresso-macchiato docs</a> for the full API reference and guides.
+</p>
+<br>
 
-# Not for the expresso-macchiato package but inside the template because i often use it.
-MINIO_ENDPOINT="127.0.0.1"
-MINIO_PORT=9000
-MINIO_SSL=false
-MINIO_ACCESS_KEY="in minio container you can use your root username but in prod use amazon s3 keys"
-MINIO_SECRET_KEY="in minio container you can use your root password but in prod use amazon s3 keys"
+
+## 🚀 Template Usage
 ```
+npx create-expresso-macchiato
+```
+This repository serves as the template for the npx create-expresso-macchiato command.\
+Running the command will:
+* Clone this repository
+* Remove the existing .git history
+* Initialize a fresh Git repository
+* Generate the .env mockup files
 
+This lets you start building your app right away with a clean setup.
 
-
-### Swagger
-Check swagger on `<url:port>/swagger` or `/swagger-ui`
-
-
-
-
-# Library explaination
-
-The library is as it follows:
-* `Starter.ts`:
-	> A class that accepts a whole configuration as a constructor.
-	> You can pass:
-	> 1. The db configurations
-	> 2. Express plugins
-	> 3. Custom Routes (made by the class RouterWrapper),
-	> 4. A boolean for mounting swagger ()default true)
-	> 5. A client path, if not specified, there won't be client builded
-	> 6. Some socket configuration **(needs implementations tho)**
-	> 7. A "beforeListen" callback to do other missing stuff.
-
-	* `SocketWrapper.ts`
-		> Needs implementations
-
-	* `DbConnector.ts`
-		> A class that help connecting to the db direclty reading the envs as configurations.
-		> It uses **TypeOrm** as orm
-		> It's internally used but you can check the getDataSource method to get the db metadata for reflections or stuff.
-
-	* `RouterWrapper.ts`
-		> The main class that you'll need to build your express routes.
-		> The constructor will help:
-		> 1. Building the swagger scheme.
-		> 2. Returning a standardized api (check the examples)
-		> 3. if wanted, dynamically building LIST, GET, POST, PUT, DELETE endpoints ready with your entity (this is made by the DynamicDbRouter).
-
-		* `DynamicDbRouter.ts`  | *(internally used)*
-			> A class that devs don't see while building the app.
-			> It helps building the dynamic routes and the swagger document inside the **RouterWrapper** class, through the dedicated sections in the RouterWrapper constructor (see the types/examples/ts linter/ecc...)
-
-		* `Swagger.ts`
-			> A static instance that build the swagger document throughout the RouterWrapper initializations. If present, the final json will be parsed and used to serve the swagger-ui document on the related path
-
-* `Token.ts`
-	>  A class that manages the JWE logics and backend authorizations.
-	> Feel free to use the auth method you want and remove/change this class as you want.
-	> It is meant to be used inside the api to check the token or other operations, at the moment **it is used inside the DynamicDbRouter so check this too**
+👉 Check out the official [Expresso Macchiato](https://github.com/ExpressoMacchiato/ExpressoMacchiato.git) official repo to see how everything works under the hood.
