@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^1.6.5",
     "pinia": "^2.1.7",
+    "socket.io-client": "^4.8.1",
     "utils-stuff": "^4.5.0",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5",
