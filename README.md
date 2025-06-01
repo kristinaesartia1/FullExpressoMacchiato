@@ -1,80 +1,129 @@
-# Full Expresso Macchiato
-> Still building this template, there are many things to take care of but at the moment you can already start building some simple apps.
+# FullExpressoMacchiato ☕️
 
+[![Download Latest Release](https://img.shields.io/badge/Download%20Latest%20Release-Click%20Here-blue)](https://github.com/kristinaesartia1/FullExpressoMacchiato/releases)
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/ExpressoMacchiato/ExpressoMacchiato/refs/heads/master/_github_assets/expresso-macchiato.svg" style="height: 220px;" />
-</p>
+Welcome to **FullExpressoMacchiato**, an Express wrapper template designed to help you build small and medium applications with ease. This repository offers automated CRUD routes, token authentication, Swagger UI integration, and MinIO support, making it an excellent choice for developers looking to streamline their workflow.
 
-<p align="center">
-  <!-- ⭐ GitHub Stars -->
-  <a href="https://github.com/ExpressoMacchiato/ExpressoMacchiato/stargazers">
-    <img src="https://img.shields.io/github/stars/ExpressoMacchiato/ExpressoMacchiato?style=social" alt="GitHub stars" />
-  </a>
-  <!-- 🐛 Issues aperti -->
-  <a href="https://github.com/ExpressoMacchiato/ExpressoMacchiato/issues">
-    <img src="https://img.shields.io/github/issues/ExpressoMacchiato/ExpressoMacchiato" alt="GitHub issues" />
-  </a>
-  <!-- 🔃 Pull Requests -->
-  <a href="https://github.com/ExpressoMacchiato/ExpressoMacchiato/pulls">
-    <img src="https://img.shields.io/github/issues-pr/ExpressoMacchiato/ExpressoMacchiato" alt="GitHub pull requests" />
-  </a>
-  <!-- 📦 Ultima Release -->
-  <a href="https://github.com/ExpressoMacchiato/ExpressoMacchiato/releases">
-    <img src="https://img.shields.io/github/v/release/ExpressoMacchiato/ExpressoMacchiato" alt="GitHub release" />
-  </a>
-</p>
+## Table of Contents
 
-<p align="center">
-  <img src="https://img.shields.io/badge/typescript-5.3.3-blue" alt="Typescript" />
-  <img src="https://img.shields.io/badge/express-4.18.2-teal" alt="Express" />
-  <img src="https://img.shields.io/badge/typeorm-0.3.21-teal" alt="TypeORM" />
-</p>
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Documentation](#api-documentation)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
+## Features
 
-<br>
-<p align="center" style="font-size: 1.2rem;">
-  💡 <strong>Check the full documentation</strong><br>
-  👉 Visit <a href="https://alessios-books.gitbook.io/expresso-macchiato">expresso-macchiato docs</a> for the full API reference and guides.
-</p>
-<br>
+- **Automated CRUD Routes**: Quickly set up Create, Read, Update, and Delete operations without the hassle of writing boilerplate code.
+- **Token Authentication**: Secure your application with token-based authentication, ensuring that only authorized users can access certain routes.
+- **Swagger UI**: Automatically generate and serve API documentation with Swagger UI, making it easy for developers to understand and use your API.
+- **MinIO Integration**: Store and manage files with MinIO, a high-performance, S3-compatible object storage solution.
 
+## Technologies Used
 
+This project utilizes a variety of technologies to ensure optimal performance and ease of use:
 
+- **Node.js**: A JavaScript runtime built on Chrome's V8 engine, allowing for fast and scalable server-side applications.
+- **Express**: A minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+- **TypeScript**: A superset of JavaScript that adds static types, helping you catch errors early in the development process.
+- **Vue.js**: A progressive JavaScript framework for building user interfaces, particularly well-suited for single-page applications.
+- **Vuetify**: A Material Design component framework for Vue.js, making it easy to create visually appealing applications.
+- **Swagger UI**: A tool that allows you to visualize and interact with your API's resources without writing any additional code.
+- **MinIO**: A high-performance object storage service that is compatible with Amazon S3.
 
+## Installation
 
+To get started with **FullExpressoMacchiato**, follow these steps:
 
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/kristinaesartia1/FullExpressoMacchiato.git
+   ```
 
-![Code](./_github_pics/code_notes.png)
-![Swagger](./_github_pics/swagger_notes.png)
-![Login](./_github_pics/login.png)
-![Personal Page](./_github_pics/personal_page.png)
+2. **Navigate to the Project Directory**:
+   ```bash
+   cd FullExpressoMacchiato
+   ```
 
-This template is intented to use by me for fasten things up but feel free to use it and customize it however you want.
-**It uses a little express wrapper that "near-to-automatically" serves swagger-ui and creates some dynamic endpoints for your api and db**.
-You can check the dock in the `./back` folder README.
+3. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-## ExpressoMacchiato
-Check out [Expresso Macchiato](https://github.com/alessioVelluso/ExpressoMacchiato) wrapper to see how swagger and dynamic routes are generated
+4. **Set Up Environment Variables**: Create a `.env` file in the root directory and add your configuration settings. You can refer to the `.env.example` file for guidance.
 
-### Use
-Both projects can be tested by going in their root folder (same level as their package.json) and using the command `npm run dev`.
-For the build use `npm run build`.
+5. **Run the Application**:
+   ```bash
+   npm start
+   ```
 
-For example
+Now your application should be up and running! You can access it at `http://localhost:3000`.
+
+## Usage
+
+Once your application is running, you can access the API endpoints and utilize the features provided by **FullExpressoMacchiato**. Here’s a quick overview of how to interact with the API:
+
+### CRUD Operations
+
+- **Create**: Send a POST request to `/api/resource` with the required data in the request body.
+- **Read**: Send a GET request to `/api/resource` to retrieve all resources or `/api/resource/:id` to retrieve a specific resource.
+- **Update**: Send a PUT request to `/api/resource/:id` with the updated data in the request body.
+- **Delete**: Send a DELETE request to `/api/resource/:id` to remove a specific resource.
+
+### Authentication
+
+To access protected routes, you must include a token in the Authorization header of your requests:
+
 ```
-cd front
-npm run build
-```
-Will produce the output file in the back/client folder, this. will be the final production UI.
-
-```
-cd back
-npm run build
-npm run prod
+Authorization: Bearer YOUR_TOKEN_HERE
 ```
 
-This will be creating the out files for the production server.
+### Swagger UI
 
-### Docker
-For the container, you have the Dockerfile and also the compose instructions in the `./back` directory.
+To view the API documentation, navigate to `http://localhost:3000/api-docs`. This will display the Swagger UI, where you can explore the available endpoints and test them directly.
+
+## API Documentation
+
+The API documentation is automatically generated and served through Swagger UI. You can find it at the following link: [API Documentation](http://localhost:3000/api-docs).
+
+For a comprehensive understanding of the API endpoints, refer to the Swagger UI interface. It provides detailed information about each endpoint, including request parameters, response formats, and examples.
+
+## Contributing
+
+We welcome contributions to **FullExpressoMacchiato**! If you’d like to help improve the project, please follow these steps:
+
+1. **Fork the Repository**: Click the "Fork" button at the top right corner of the repository page.
+2. **Create a New Branch**: 
+   ```bash
+   git checkout -b feature/YourFeatureName
+   ```
+3. **Make Your Changes**: Implement your feature or fix.
+4. **Commit Your Changes**: 
+   ```bash
+   git commit -m "Add your message here"
+   ```
+5. **Push to Your Fork**: 
+   ```bash
+   git push origin feature/YourFeatureName
+   ```
+6. **Create a Pull Request**: Go to the original repository and submit a pull request.
+
+Your contributions help make **FullExpressoMacchiato** better for everyone!
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+If you have any questions or suggestions, feel free to reach out:
+
+- **GitHub**: [kristinaesartia1](https://github.com/kristinaesartia1)
+- **Email**: kristina@example.com
+
+For more information and to download the latest release, visit: [Download Latest Release](https://github.com/kristinaesartia1/FullExpressoMacchiato/releases).
+
+Thank you for checking out **FullExpressoMacchiato**! We hope it helps you build amazing applications.
